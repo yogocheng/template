@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const proxy = require('./config/proxy')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist')
@@ -39,6 +39,9 @@ module.exports = {
   ],
   stats: {
     children: false,
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.jsx', '.ts'], // 默认解析扩展文件
   },
   devServer: {
     stats: 'errors-only', //  'none' | 'errors-only' | 'minimal' | 'normal' | 'verbose'

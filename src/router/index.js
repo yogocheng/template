@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import NotFound from '../components/404/index';
+import NotFound from '../components/404';
 
 export default [
   {
