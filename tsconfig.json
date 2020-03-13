@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowJs": false,  
+  },
+  "exclude": [ "src" ],
+  "include": [ "file.ts" ]
+}
