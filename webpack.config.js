@@ -3,18 +3,25 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const proxy = require('./config/proxy')
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/index.tsx',
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader'
+      //   }
+      // },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'ts-loader',
         }
       },
       {
@@ -41,7 +48,7 @@ module.exports = {
     children: false,
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx', '.ts'], // 默认解析扩展文件
+    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'], // 默认解析扩展文件
   },
   devServer: {
     stats: 'errors-only', //  'none' | 'errors-only' | 'minimal' | 'normal' | 'verbose'

@@ -1,28 +1,29 @@
 import { observable, computed, action, configure } from "mobx";
 
 // 不允许在动作之外进行状态修改, 异步操作回调中不允许修改store
-configure({ enforceActions: "observed"}) 
+configure({ enforceActions: "observed" })
+
 
 class Store {
-  @observable price = 11110;
-  @observable amount = 11;
+  @observable price: number = 11110;
+  @observable amount: number = 11;
 
-  @computed get total() {
-      return this.price * this.amount;
+  @computed get total(): number {
+    return this.price * this.amount;
   }
 
-  @action.bound 
+  @action.bound
   increment() {
     this.price++
   }
 
   @action.bound
-  fetchPrice() { 
+  fetchPrice() {
     setTimeout(() => {
       this.increment()
     }, 0)
   }
-  
+
 }
 
 export default new Store()
