@@ -1,7 +1,7 @@
 import React from 'react';
 import store from '../../store';
 import { observer } from 'mobx-react';
-// import api from '../../api';
+import api from '../../api';
 
 interface IProps {
   className: string,
@@ -22,14 +22,15 @@ class Layout extends React.Component<IProps, IState> {
   }
 
   componentWillMount () {
-    // api.user.login({
-    //   phone: '123456',
-    //   password: 'qweasd',
-    // }).then(res => {
-    //   console.log(res)
-    // }, err => {
-    //   console.log(err)
-    // })
+    api.login({
+      phone: '123456',
+      password: 'qweasd',
+    }).then(res => {
+      console.log(res)
+    }, err => {
+      console.log(err)
+    })
+   
   }
 
   go = () => {
@@ -41,9 +42,13 @@ class Layout extends React.Component<IProps, IState> {
       layout:
       {store.price}
       {store.total}
+      {
+        store.amount
+      }
       <button onClick={store.increment}>++</button>
       <button onClick={this.go}>jk </button>
       <button onClick={store.fetchPrice}>--</button>
+      <button onClick={store.fetchAmount}>ll</button>
     </div>
   }
 }
