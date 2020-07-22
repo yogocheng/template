@@ -8,22 +8,28 @@ module.exports = {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist')
   },
+  resolve: {
+    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'], // 默认解析扩展文件
+    alias: {
+      '@': path.join(__dirname, '.', 'src'),
+    },
+  },
   module: {
     rules: [
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader'
-      //   }
-      // },
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+            transpileOnly: true
+        }
+    },
+    {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'ts-loader',
+            loader: 'babel-loader'
         }
-      },
+    },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
@@ -38,6 +44,8 @@ module.exports = {
       }
     ]
   },
+  // target: 'web',
+  // devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       title: 'production',
@@ -47,12 +55,10 @@ module.exports = {
   stats: {
     children: false,
   },
-  resolve: {
-    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'], // 默认解析扩展文件
-  },
+ 
   devServer: {
-    stats: 'errors-only', //  'none' | 'errors-only' | 'minimal' | 'normal' | 'verbose'
-    compress: true, // gzip 压缩
+    stats: 'minimal', //  'none' | 'errors-only' | 'minimal' | 'normal' | 'verbose'
+    // compress: true, // gzip 压缩
 		contentBase: './dist',
     host: '0.0.0.0',
     progress: true,

@@ -1,22 +1,38 @@
-import Layout from '../components/Layout';
-import NotFound from '../components/404';
+import { Hello } from '@/components/Hello';
+import NotFound from '@/components/NotFound';
+import Home from '@/pages/Home';
 
 interface IRouter {
-  path: string,
-  component: any,
-  exact?: boolean,
+    path: string,
+    component?: any,
+    exact?: boolean,
+    routes?: Array<IRouter>,
+    requiresAuth?: boolean,
 }
 
 const Router: IRouter[] = [
-  {
-    path: '/',
-    component: Layout,
-    exact:true,
-  },
-  {
-    path: '*',
-    component: NotFound,
-  }
-]
+    {
+        path: '/hello',
+        exact: true,
+        component: Hello,
+        requiresAuth: false,
+    },
+    {
+      path: '/home',
+      exact: true,
+      component: Home,
+      requiresAuth: false,
+    },
+    {
+        path: '/notfount',
+        component: NotFound,
+        requiresAuth: false,
+    },
+    {
+      path: '*',
+      component: NotFound,
+      requiresAuth: false,
+    }
+];
 
 export default Router;
