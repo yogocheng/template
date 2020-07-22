@@ -20,19 +20,34 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-            transpileOnly: true
+          transpileOnly: true
         }
-    },
-    {
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-            loader: 'babel-loader'
+          loader: 'babel-loader'
         }
-    },
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]__[local]--[hash:base64:5]',
+                }
+              }
+            },
+            'sass-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -55,16 +70,16 @@ module.exports = {
   stats: {
     children: false,
   },
- 
+
   devServer: {
     stats: 'minimal', //  'none' | 'errors-only' | 'minimal' | 'normal' | 'verbose'
     // compress: true, // gzip 压缩
-		contentBase: './dist',
+    contentBase: './dist',
     host: '0.0.0.0',
     progress: true,
     useLocalIp: true, //允许使用ip打开
     port: 8080,
     hot: true,
     proxy,
-	},
+  },
 }
