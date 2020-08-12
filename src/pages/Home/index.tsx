@@ -20,7 +20,6 @@ export default class Home extends React.Component<any, any> {
     return (
       <div>
         { user.age }
-
         <button onClick={this.add}>+</button>
       </div>
     )

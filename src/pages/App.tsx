@@ -4,11 +4,15 @@ import { Provider } from 'react-redux';
 import route from '@/router';
 import stores from '@/store';
 import Authority from './Authority';
+import DemoPng from '@/assets/aa.png';
+
 
 function App(props: any): JSX.Element {
   return (
     <Provider store={stores}>
       <BrowserRouter>
+      <img src={DemoPng} />
+
             <Authority />
             <Switch>
                     {
